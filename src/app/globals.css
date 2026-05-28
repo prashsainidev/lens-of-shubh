@@ -1,26 +1,323 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
 
+/* ============================================================
+   LENS OF SHUBH - GLOBAL CSS SYSTEM
+============================================================ */
+
+/* CSS VARIABLES — Edit colours, fonts, and spacing here */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:          #0A0A08;       /* Main background — deep almost-black */
+  --bg2:         #111110;       /* Cards / sections background */
+  --bg3:         #161614;       /* Alternate section background */
+  --gold:        #C9A84C;       /* Primary accent — golden */
+  --gold-dim:    #8A6E2E;       /* Muted gold for borders */
+  --gold-glow:   rgba(201,168,76,0.12);
+  --cream:       #F2E8D5;       /* Light text on dark bg */
+  --muted:       #7A756C;       /* Secondary / caption text */
+  --white:       #FAFAF8;
+  --font-head:   'Cormorant Garamond', Georgia, serif;
+  --font-head-italic: 'Cormorant Garamond', Georgia, serif;
+  --font-body:   'DM Sans', sans-serif;
+  --font-mono:   'DM Mono', monospace;
+  --radius:      4px;
+  --transition:  0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Premium UI Tokens */
+  --page-edge: clamp(24px, 5vw, 72px);
+  --section-y: clamp(88px, 9vw, 136px);
+  --surface-soft: rgba(250, 250, 248, 0.035);
+  --surface-strong: rgba(250, 250, 248, 0.065);
+  --line-soft: rgba(201, 168, 76, 0.14);
+  --line-strong: rgba(201, 168, 76, 0.24);
+  --text-soft: rgba(242, 232, 213, 0.82);
+  --text-faint: rgba(242, 232, 213, 0.58);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*, *::before, *::after { 
+  box-sizing: border-box; 
+  margin: 0; 
+  padding: 0; 
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  font-family: var(--font-body);
+  cursor: none;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  color: var(--text-soft);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.76;
+  letter-spacing: 0.015em;
+  background:
+    radial-gradient(circle at 18% 12%, rgba(201, 168, 76, 0.045), transparent 28rem),
+    var(--bg);
+  font-synthesis: none;
+}
+
+p {
+  max-width: 66ch;
+}
+
+/* ── Custom Scrollbar ── */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+  border-left: 1px dashed rgba(201, 168, 76, 0.15);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold-dim);
+  border: 2px solid var(--bg);
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold);
+}
+
+/* ── Selection ── */
+::selection { 
+  background: var(--gold); 
+  color: var(--bg); 
+}
+
+/* ── Unified Premium Typography Scale ── */
+.section-heading,
+.about-heading,
+.contact-heading {
+  font-family: var(--font-head);
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: -0.01em;
+  font-size: clamp(2.2rem, 5.5vw, 3.5rem);
+  line-height: 1.16;
+}
+
+.section-heading em,
+.about-heading em,
+.contact-heading em {
+  font-family: var(--font-head-italic);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+@media (max-width: 1200px) {
+  .section-heading,
+  .about-heading,
+  .contact-heading {
+    font-size: clamp(2rem, 5vw, 3.15rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-heading,
+  .about-heading,
+  .contact-heading {
+    font-size: clamp(1.85rem, 8vw, 2.35rem);
+    line-height: 1.12;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-heading,
+  .about-heading,
+  .contact-heading {
+    font-size: 1.75rem;
+    line-height: 1.15;
+  }
+}
+
+
+/* ── Global Typography Helper / Calibration ── */
+.hero-title,
+.about-heading,
+.section-heading,
+.contact-heading,
+.stat-num,
+.service-num,
+.service-title,
+.step-title,
+.footer-logo,
+.nav-logo {
+  font-synthesis: none;
+}
+
+.hero-title em,
+.about-heading em,
+.section-heading em,
+.contact-heading em,
+.testimonial-text,
+.gallery-title {
+  font-family: var(--font-head-italic);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.hero-eyebrow,
+.stat-label,
+.filter-btn,
+.gallery-cat,
+.service-desc,
+.step-desc,
+.contact-sub,
+.footer-links a {
+  font-weight: 300;
+}
+
+/* ── Utility Classes ── */
+.gold { color: var(--gold); }
+.muted { color: var(--muted); }
+.serif { font-family: var(--font-head); }
+
+.section-label {
+  display: flex; align-items: center; gap: 16px;
+  font-family: var(--font-mono);
+  font-size: 11px; letter-spacing: 4px;
+  color: var(--gold); text-transform: uppercase;
+  margin-bottom: 20px;
+  margin-bottom: 1rem;
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.section-label::before {
+  content: ''; display: block;
+  width: 30px; height: 1px; background: var(--gold);
+}
+
+/* ── UI Buttons & Links ── */
+.btn-primary,
+.btn-outline,
+.form-submit {
+  padding: 14px 36px;
+  font-family: var(--font-body);
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none;
+  cursor: none;
+  transition: all var(--transition);
+  border-radius: 6px;
+  padding: 0.95rem 1.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.btn-primary,
+.form-submit {
+  background: var(--gold);
+  color: var(--bg);
+  border: none;
+  background: linear-gradient(135deg, #e3c768, var(--gold));
+  box-shadow: 0 1rem 2.5rem rgba(201, 168, 76, 0.18);
+}
+.btn-primary:hover,
+.form-submit:hover { 
+  background: #dbbf6e; 
+  transform: translateY(-2px); 
+  box-shadow: 0 12px 32px rgba(201,168,76,0.3); 
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  border: 1px solid rgba(242,232,213,0.3);
+  background: rgba(250, 250, 248, 0.035);
+  border-color: rgba(242, 232, 213, 0.22);
+}
+.btn-outline:hover { 
+  border-color: var(--gold); 
+  color: var(--gold); 
+  transform: translateY(-2px); 
+}
+
+.social-link {
+  width: 40px; height: 40px;
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted); text-decoration: none; font-size: 15px;
+  transition: all var(--transition); cursor: none;
+  width: 2.65rem;
+  height: 2.65rem;
+  background: rgba(10, 10, 8, 0.34);
+  border-color: rgba(201, 168, 76, 0.24);
+}
+.social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* ── Scroll Reveal Animations ── */
+.reveal {
+  opacity: 0; transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* ============================================================
+   UNIVERSAL RESPONSIVE COMPLIANCE
+   ============================================================ */
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Minimum Touch Target Sizes */
+button, 
+a, 
+input[type="submit"], 
+input[type="button"],
+.social-link,
+.filter-btn,
+.btn-primary,
+.btn-outline,
+.form-submit,
+.lightbox-close {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Image compliance */
+img {
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* Mobile-first font sizes rules */
+body {
+  font-size: 14px; /* Minimum body text size */
+}
+
+@media (max-width: 768px) {
+  input, 
+  textarea, 
+  select {
+    font-size: 16px !important; /* Prevent iOS zoom */
+  }
 }
