@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <radialGradient id="bg-grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#181816" />
+      <stop offset="100%" stop-color="#0A0A09" />
+    </radialGradient>
+    
+    <!-- Metallic Gold Gradient -->
+    <linearGradient id="gold-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9C7A35" />
+      <stop offset="25%" stop-color="#E5C77F" />
+      <stop offset="50%" stop-color="#C9A84C" />
+      <stop offset="75%" stop-color="#FDF1A9" />
+      <stop offset="100%" stop-color="#A6843C" />
+    </linearGradient>
+
+    <!-- Subtle Outer Glow -->
+    <radialGradient id="gold-glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.15" />
+      <stop offset="100%" stop-color="#C9A84C" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Clip path to keep shutter blades inside the thick gold ring -->
+    <clipPath id="shutter-clip">
+      <circle cx="256" cy="256" r="176" />
+    </clipPath>
+
+    <!-- Lens Flare Gradient for Smooth Fade-out (avoids flat cuts) -->
+    <linearGradient id="flare-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0" />
+      <stop offset="25%" stop-color="#FFFFFF" stop-opacity="0.25" />
+      <stop offset="75%" stop-color="#FFFFFF" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+
+  <!-- Canvas Background -->
+  <rect width="512" height="512" rx="128" fill="url(#bg-grad)" stroke="#1F1F1C" stroke-width="2"/>
+
+  <!-- Glow Effect -->
+  <circle cx="256" cy="256" r="200" fill="url(#gold-glow)"/>
+
+  <!-- Camera Aperture / Shutter Blades (Minimalist, Symmetrical & High-End) -->
+  <!-- Clipped at r=176 and drawn before rings so lines never protrude outside the gold ring -->
+  <g stroke="url(#gold-grad)" stroke-width="1.5" opacity="0.25" clip-path="url(#shutter-clip)">
+    <line x1="256" y1="76" x2="310" y2="150" />
+    <line x1="383" y1="129" x2="369" y2="219" />
+    <line x1="436" y1="256" x2="362" y2="310" />
+    <line x1="383" y1="383" x2="293" y2="369" />
+    <line x1="256" y1="436" x2="202" y2="362" />
+    <line x1="129" y1="383" x2="143" y2="293" />
+    <line x1="76" y1="256" x2="150" y2="202" />
+    <line x1="129" y1="129" x2="219" y2="143" />
+  </g>
+
+  <!-- Outer Double Gold Rings (Luxury Watch/Lens Feel) -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="url(#gold-grad)" stroke-width="1.5" opacity="0.3"/>
+  <circle cx="256" cy="256" r="180" fill="none" stroke="url(#gold-grad)" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="256" cy="256" r="168" fill="none" stroke="url(#gold-grad)" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Central Camera Lens Aperture Ring (Layered with Lens Flare inside to hide ends) -->
+  <!-- 1. Solid Lens Background Fill -->
+  <circle cx="256" cy="256" r="125" fill="#0D0D0C"/>
+  <circle cx="256" cy="256" r="115" fill="none" stroke="url(#gold-grad)" stroke-width="1" opacity="0.2"/>
+
+  <!-- 2. Concentric Lens Flare (fades out at ends to prevent flat cuts or dots) -->
+  <path d="M155 185 A123 123 0 0 1 302 142" fill="none" stroke="url(#flare-grad)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- 3. Golden Ring Stroke on top of Lens background & Flare ends -->
+  <circle cx="256" cy="256" r="125" fill="none" stroke="url(#gold-grad)" stroke-width="4.5"/>
+
+  <!-- Serif Luxury Initials "LOS" (Perfect Legibility & Balance) -->
+  <text 
+    x="256" 
+    y="262" 
+    font-family="'Cormorant Garamond', 'Georgia', 'Times New Roman', serif" 
+    font-size="82" 
+    font-weight="400" 
+    fill="url(#gold-grad)" 
+    text-anchor="middle" 
+    letter-spacing="4"
+    style="text-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);"
+  >LOS</text>
+
+  <!-- Subtitle Tagline "LENS OF SHUBH" -->
+  <text 
+    x="256" 
+    y="306" 
+    font-family="'DM Sans', 'Montserrat', 'Helvetica', sans-serif" 
+    font-size="13" 
+    font-weight="500" 
+    fill="#C9A84C" 
+    text-anchor="middle" 
+    letter-spacing="5" 
+    opacity="0.85"
+  >LENS OF SHUBH</text>
+
+  <!-- Lens Flare/Reflection Highlight for Premium Look -->
+  <path d="M155 185 A110 110 0 0 1 300 148" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" opacity="0.25"/>
+</svg>
