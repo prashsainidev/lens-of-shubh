@@ -1242,7 +1242,7 @@ export default function CalendarPage() {
                               placeholder="Select or type (e.g. Haldi, Mehndi)"
                               value={event.eventType}
                               onChange={(e) => updateFormEventField(index, "eventType", e.target.value)}
-                              className="bg-[#1A1A19] border border-amber-500/10 text-gray-200 text-sm rounded-xl px-3.5 py-2.5 outline-none focus:border-amber-500/30 transition-colors placeholder-gray-600"
+                              className="bg-[#1A1A19] border border-amber-500/10 text-gray-200 text-sm rounded-xl px-3.5 py-2.5 outline-none focus:border-amber-500/30 transition-colors placeholder-gray-600 cursor-pointer"
                             />
                           </div>
 

@@ -13,6 +13,22 @@
     color: #ffffff;
     font-family: 'DM Sans', sans-serif;
   }
+
+  /* Ensure all interactive/clickable elements show pointer/hand cursor */
+  a,
+  button,
+  select,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"],
+  input[type="checkbox"],
+  input[type="radio"],
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  .cursor-pointer {
+    cursor: pointer !important;
+  }
   
   /* Custom scrollbar matching premium theme */
   ::-webkit-scrollbar {
