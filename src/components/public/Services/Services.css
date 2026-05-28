@@ -1,0 +1,243 @@
+/* ================================================================
+   SERVICES COMPONENT STYLES
+================================================================ */
+
+#services {
+  padding: 120px 60px;
+  background: var(--bg3);
+  padding: var(--section-y) var(--page-edge);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 60px;
+  border: 1px solid rgba(201,168,76,0.08);
+  gap: 1rem;
+  border: 0;
+}
+
+.service-card {
+  padding: 48px 40px;
+  background: var(--bg2);
+  border: 1px solid rgba(201,168,76,0.08);
+  transition: all var(--transition);
+  position: relative; overflow: hidden;
+  border-radius: 2px;
+  border-radius: 8px;
+  min-height: 21rem;
+  padding: 2.35rem;
+  background:
+    linear-gradient(145deg, rgba(250, 250, 248, 0.048), rgba(250, 250, 248, 0.018)),
+    var(--bg2);
+  border: 1px solid var(--line-soft);
+}
+
+.service-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform var(--transition);
+}
+
+.service-card:hover { 
+  background: var(--bg); 
+  border-color: var(--line-strong);
+  transform: translateY(-4px);
+  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.22);
+}
+.service-card:hover::before { transform: scaleX(1); }
+
+.service-num {
+  font-family: var(--font-head); font-size: 60px;
+  color: rgba(201,168,76,0.08); font-weight: 700;
+  line-height: 1; margin-bottom: 24px;
+  font-synthesis: none;
+  font-size: 54px;
+  font-weight: 600;
+  margin-bottom: 1.4rem;
+  font-size: 2.6rem;
+  font-weight: 500;
+  color: rgba(201, 168, 76, 0.15);
+}
+
+.service-icon { font-size: 32px; margin-bottom: 20px; }
+
+.service-title {
+  font-family: var(--font-head); font-size: 26px;
+  font-weight: 400; margin-bottom: 16px;
+  color: var(--cream);
+  font-synthesis: none;
+  font-size: 24px;
+  font-weight: 300;
+  margin-bottom: 0.85rem;
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.18;
+}
+
+.service-desc { 
+  color: var(--muted); font-size: 14px; line-height: 1.8; 
+  font-weight: 300;
+  color: var(--text-faint);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.service-price {
+  margin-top: 28px; padding-top: 20px;
+  border-top: 1px solid rgba(201,168,76,0.12);
+  font-family: var(--font-mono);
+  font-size: 12px; color: var(--gold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+}
+
+/* ================================================================
+   RESPONSIVE OVERRIDES
+   ================================================================ */
+
+/* Tablet Layout (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .services-grid { 
+    grid-template-columns: 1fr 1fr; 
+    gap: 1.25rem;
+  }
+}
+
+/* Mobile Layout (< 768px) */
+@media (max-width: 767px) {
+  #services { 
+    padding: 5rem 1.35rem; 
+  }
+  .services-grid { 
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+  }
+  .service-card {
+    padding: 1.25rem; /* p-5 spacing */
+    min-height: auto;
+  }
+  .service-desc {
+    font-size: 0.875rem; /* text-sm */
+  }
+  .service-price {
+    font-weight: 700; /* bold */
+    font-size: 0.8rem;
+  }
+}
+
+/* ================================================================
+   SERVICES EXTRA POLISH & SKELETON SHIMMER STYLES
+   ================================================================ */
+.popular-badge {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(201, 168, 76, 0.25);
+}
+
+.service-features {
+  margin-top: 1.5rem;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px dashed rgba(250, 250, 248, 0.08);
+  padding-top: 1.25rem;
+}
+
+.service-features li {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-faint);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feat-bullet {
+  color: var(--gold);
+  font-weight: bold;
+}
+
+/* Skeletons */
+.service-card-skeleton {
+  padding: 2.35rem;
+  background: var(--bg2);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  min-height: 21rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+}
+
+.shimmer-block {
+  background: linear-gradient(
+    90deg,
+    rgba(250, 250, 248, 0.015) 25%,
+    rgba(250, 250, 248, 0.04) 50%,
+    rgba(250, 250, 248, 0.015) 75%
+  );
+  background-size: 200% 100%;
+  animation: servicesShimmer 1.6s infinite linear;
+  border-radius: 4px;
+}
+
+.num-shimmer {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+}
+
+.title-shimmer {
+  width: 70%;
+  height: 24px;
+  margin-top: 0.5rem;
+}
+
+.desc-shimmer {
+  width: 100%;
+  height: 64px;
+}
+
+.features-shimmer {
+  width: 100%;
+  height: 80px;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+}
+
+.price-shimmer {
+  width: 40%;
+  height: 20px;
+  margin-top: auto;
+}
+
+@keyframes servicesShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
