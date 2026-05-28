@@ -1,0 +1,142 @@
+/* ================================================================
+   CUSTOM CURSOR COMPONENT STYLES
+================================================================ */
+
+#cursor {
+  width: 10px; height: 10px;
+  background: var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 999999 !important;
+  transform: translate(-50%,-50%);
+  transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: difference;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#cursor-ring {
+  width: 36px; height: 36px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none;
+  z-index: 999998 !important;
+  transform: translate(-50%,-50%);
+  transition: transform 0.18s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Show custom cursor only when mouse actually moves */
+body.cursor-ready #cursor {
+  opacity: 1;
+  visibility: visible;
+}
+
+body.cursor-ready #cursor-ring {
+  opacity: 0.5;
+  visibility: visible;
+}
+
+body.cursor-ready:hover #cursor-ring { opacity: 1; }
+
+@media (hover: none) {
+  #cursor, #cursor-ring {
+    display: none !important;
+  }
+  body, a, button, .gallery-item {
+    cursor: auto !important;
+  }
+}
+
+/* ================================================================
+   RESTORE STANDARD CURSOR AND HIDE CUSTOM RETICLE WHEN MODAL IS OPEN
+   ================================================================ */
+body.modal-open,
+body.modal-open * {
+  cursor: auto !important;
+}
+
+body.modal-open button,
+body.modal-open a,
+body.modal-open select,
+body.modal-open .star-btn,
+body.modal-open .feedback-modal-close,
+body.modal-open .form-submit {
+  cursor: pointer !important;
+}
+
+body.modal-open input,
+body.modal-open textarea {
+  cursor: text !important;
+}
+
+body.modal-open #cursor,
+body.modal-open #cursor-ring {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+
+/* Morphing Cursor - Camera Focus Reticle */
+.cursor-focus #cursor {
+  background: var(--gold) !important;
+  width: 4px !important;
+  height: 4px !important;
+}
+
+.cursor-focus #cursor-ring {
+  border: 1px solid var(--gold) !important;
+  border-radius: 4px !important; /* rectangular corners like focus box */
+  width: 44px !important;
+  height: 44px !important;
+  opacity: 1 !important;
+}
+
+.cursor-focus #cursor-ring::before,
+.cursor-focus #cursor-ring::after {
+  content: '';
+  position: absolute;
+  background: var(--gold);
+}
+
+/* Adding corner crosshairs on the custom cursor */
+.cursor-focus #cursor-ring::before {
+  top: -4px; bottom: -4px; left: 50%; width: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(to bottom, var(--gold) 2px, transparent 2px, transparent calc(100% - 2px), var(--gold) calc(100% - 2px));
+}
+
+.cursor-focus #cursor-ring::after {
+  left: -4px; right: -4px; top: 50%; height: 1px;
+  transform: translateY(-50%);
+  background: linear-gradient(to right, var(--gold) 2px, transparent 2px, transparent calc(100% - 2px), var(--gold) calc(100% - 2px));
+}
+
+/* ================================================================
+   GLOBAL FORM HOVER CURSOR OVERRIDES (PREVENT CURSOR DISAPPEARING)
+   ================================================================ */
+input, textarea {
+  cursor: text !important;
+}
+
+select, button, input[type="submit"], input[type="button"], .star-btn, .feedback-modal-close {
+  cursor: pointer !important;
+}
+
+/* Hide the custom cursor components completely when hovering over any form input/textarea/select */
+body:has(input:hover) #cursor,
+body:has(input:hover) #cursor-ring,
+body:has(textarea:hover) #cursor,
+body:has(textarea:hover) #cursor-ring,
+body:has(select:hover) #cursor,
+body:has(select:hover) #cursor-ring,
+body:has(button:hover) #cursor,
+body:has(button:hover) #cursor-ring {
+  opacity: 0 !important;
+  display: none !important;
+  visibility: hidden !important;
+}
