@@ -69,20 +69,42 @@ model SiteAsset {
   updatedAt DateTime @updatedAt
 }
 
-model Booking {
-  id          String   @id @default(cuid())
+model WeddingProject {
+  id          String    @id @default(cuid())
   clientName  String
   phone       String?
   email       String?
-  eventType   String   // "Wedding", "Pre-Wedding", "Portrait", "Corporate", "Personal"
+  religion    String    @default("Hindu") // "Hindu" | "Muslim" | "Destination" | "Other"
+  status      String    @default("confirmed") // "confirmed" | "pending" | "completed" | "cancelled"
+  totalAmount String?
+  advancePaid String?
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  bookings    Booking[]
+}
+
+model Booking {
+  id          String          @id @default(cuid())
+  projectId   String?
+  project     WeddingProject? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  
+  // Standalone bookings use these directly; null for project-based bookings
+  clientName  String?
+  phone       String?
+  email       String?
+  totalAmount String?
+  advancePaid String?
+  
+  eventType   String          // Specific function name or Standalone type
   eventDate   DateTime
   venue       String?
   notes       String?
-  status      String   @default("confirmed") // "confirmed" | "pending" | "completed" | "cancelled"
-  isBlocked   Boolean  @default(false)        // Admin block date (vacation/personal)
-  blockReason String?                          // Reason for blocking
-  totalAmount String?
-  advancePaid String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  status      String          @default("confirmed")
+  isBlocked   Boolean         @default(false)
+  blockReason String?
+  
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
 }
+
