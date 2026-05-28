@@ -18,6 +18,7 @@ export async function PATCH(
   try {
     const body = await req.json();
     const {
+      projectId,
       clientName,
       phone,
       email,
@@ -35,6 +36,7 @@ export async function PATCH(
     const updated = await prisma.booking.update({
       where: { id },
       data: {
+        ...(projectId !== undefined && { projectId: projectId || null }),
         ...(clientName !== undefined && { clientName }),
         ...(phone !== undefined && { phone }),
         ...(email !== undefined && { email }),
@@ -48,6 +50,7 @@ export async function PATCH(
         ...(totalAmount !== undefined && { totalAmount }),
         ...(advancePaid !== undefined && { advancePaid }),
       },
+      include: { project: true },
     });
 
     return NextResponse.json(updated);

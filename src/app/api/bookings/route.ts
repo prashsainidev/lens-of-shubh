@@ -32,10 +32,12 @@ export async function GET(req: NextRequest) {
   try {
     const bookings = await prisma.booking.findMany({
       where: whereClause,
+      include: { project: true },
       orderBy: { eventDate: "asc" },
     });
     return NextResponse.json(bookings);
-  } catch {
+  } catch (error) {
+    console.error("GET bookings error:", error);
     return NextResponse.json(
       { error: "Failed to fetch bookings" },
       { status: 500 }
@@ -53,6 +55,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const {
+      projectId,
       clientName,
       phone,
       email,
@@ -73,18 +76,19 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
-    if (!isBlocked && !clientName) {
+    if (!isBlocked && !projectId && !clientName) {
       return NextResponse.json(
-        { error: "clientName is required for non-blocked bookings" },
+        { error: "clientName is required for standalone bookings" },
         { status: 400 }
       );
     }
 
     const booking = await prisma.booking.create({
       data: {
-        clientName: clientName || "Blocked",
-        phone: phone || null,
-        email: email || null,
+        projectId: projectId || null,
+        clientName: projectId ? null : (clientName || "Blocked"),
+        phone: projectId ? null : (phone || null),
+        email: projectId ? null : (email || null),
         eventType: eventType || "Personal",
         eventDate: new Date(eventDate),
         venue: venue || null,
@@ -92,13 +96,15 @@ export async function POST(req: NextRequest) {
         status: status || "confirmed",
         isBlocked: isBlocked || false,
         blockReason: blockReason || null,
-        totalAmount: totalAmount || null,
-        advancePaid: advancePaid || null,
+        totalAmount: projectId ? null : (totalAmount || null),
+        advancePaid: projectId ? null : (advancePaid || null),
       },
+      include: { project: true },
     });
 
     return NextResponse.json(booking, { status: 201 });
-  } catch {
+  } catch (error) {
+    console.error("POST booking error:", error);
     return NextResponse.json(
       { error: "Failed to create booking" },
       { status: 500 }
