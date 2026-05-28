@@ -68,3 +68,21 @@ model SiteAsset {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Booking {
+  id          String   @id @default(cuid())
+  clientName  String
+  phone       String?
+  email       String?
+  eventType   String   // "Wedding", "Pre-Wedding", "Portrait", "Corporate", "Personal"
+  eventDate   DateTime
+  venue       String?
+  notes       String?
+  status      String   @default("confirmed") // "confirmed" | "pending" | "completed" | "cancelled"
+  isBlocked   Boolean  @default(false)        // Admin block date (vacation/personal)
+  blockReason String?                          // Reason for blocking
+  totalAmount String?
+  advancePaid String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
