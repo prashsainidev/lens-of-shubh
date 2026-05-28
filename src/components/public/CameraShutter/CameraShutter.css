@@ -1,6 +1,6 @@
 /* ================================================================
-   ULTRA-PREMIUM LENS FOCUS SPLASH SCREEN
-================================================================ */
+   ULTRA-PREMIUM LENS FOCUS SPLASH SCREEN (CINEMATIC)
+   ================================================================ */
 
 .shutter-wrapper {
   position: fixed;
@@ -12,21 +12,24 @@
   justify-content: center;
   background: #080806; /* Solid luxury dark background */
   pointer-events: all;
-  transition: opacity 0.7s cubic-bezier(0.85, 0, 0.15, 1);
+  transition: opacity 0.9s cubic-bezier(0.25, 1, 0.5, 1), transform 0.9s cubic-bezier(0.25, 1, 0.5, 1);
   overflow: hidden;
   user-select: none;
+  transform: scale(1);
+  will-change: transform, opacity;
 }
 
 .shutter-wrapper::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(201, 168, 76, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(201, 168, 76, 0.06) 0%, transparent 70%);
   pointer-events: none;
 }
 
 .shutter-wrapper.fade-out {
   opacity: 0;
+  transform: scale(1.04);
   pointer-events: none;
 }
 
@@ -49,62 +52,254 @@
 .metric-bottom-left { position: absolute; bottom: 40px; left: 40px; }
 .metric-bottom-right { position: absolute; bottom: 40px; right: 40px; }
 
+
+
+/* Center Content Group (Vertical Stack for 100% overlap prevention) */
+.shutter-center-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  z-index: 10;
+}
+
 /* Viewfinder Corner Focus Brackets */
 .viewfinder-focus-box {
-  position: absolute;
+  position: relative;
   width: 280px;
   height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
   pointer-events: none;
-  transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* On focus snap, brackets contract slightly to lock onto the subject */
-.viewfinder-focus-box.locked {
-  width: 240px;
-  height: 240px;
 }
 
 .focus-bracket {
   position: absolute;
   width: 30px;
   height: 30px;
-  border: 1px solid rgba(201, 168, 76, 0.3);
-  transition: border-color 0.4s ease, border-width 0.4s ease;
+  border-style: solid;
+  will-change: transform, border-color, border-width, filter;
 }
 
-.viewfinder-focus-box.locked .focus-bracket {
-  border-color: var(--gold);
-  border-width: 1.5px;
-  box-shadow: 0 0 15px rgba(201, 168, 76, 0.35);
+.bracket-tl {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+  animation: focusBracketTL 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.bracket-tl { top: 0; left: 0; border-right: none; border-bottom: none; }
-.bracket-tr { top: 0; right: 0; border-left: none; border-bottom: none; }
-.bracket-bl { bottom: 0; left: 0; border-right: none; border-top: none; }
-.bracket-br { bottom: 0; right: 0; border-left: none; border-top: none; }
-
-.focus-center-dot {
-  width: 5px;
-  height: 5px;
-  background: rgba(201, 168, 76, 0.35);
-  border-radius: 50%;
-  transition: background 0.4s ease, transform 0.4s ease;
-  animation: pulseDot 1.5s infinite alternate ease-in-out;
+.bracket-tr {
+  top: 0;
+  right: 0;
+  border-left: none;
+  border-bottom: none;
+  animation: focusBracketTR 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-.viewfinder-focus-box.locked .focus-center-dot {
-  background: var(--gold);
-  transform: scale(1.3);
-  box-shadow: 0 0 10px var(--gold);
-  animation: none;
+.bracket-bl {
+  bottom: 0;
+  left: 0;
+  border-right: none;
+  border-top: none;
+  animation: focusBracketBL 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-@keyframes pulseDot {
-  0% { transform: scale(0.9); opacity: 0.4; }
-  100% { transform: scale(1.2); opacity: 0.9; }
+.bracket-br {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+  animation: focusBracketBR 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes focusBracketTL {
+  0% {
+    transform: translate(-18px, -18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  15% {
+    transform: translate(-18px, -18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  100% {
+    transform: translate(0, 0);
+    border-color: var(--gold);
+    border-width: 1.5px;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.35);
+  }
+}
+
+@keyframes focusBracketTR {
+  0% {
+    transform: translate(18px, -18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  15% {
+    transform: translate(18px, -18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  100% {
+    transform: translate(0, 0);
+    border-color: var(--gold);
+    border-width: 1.5px;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.35);
+  }
+}
+
+@keyframes focusBracketBL {
+  0% {
+    transform: translate(-18px, 18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  15% {
+    transform: translate(-18px, 18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  100% {
+    transform: translate(0, 0);
+    border-color: var(--gold);
+    border-width: 1.5px;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.35);
+  }
+}
+
+@keyframes focusBracketBR {
+  0% {
+    transform: translate(18px, 18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  15% {
+    transform: translate(18px, 18px);
+    border-color: rgba(201, 168, 76, 0.15);
+    border-width: 1px;
+    box-shadow: none;
+  }
+  100% {
+    transform: translate(0, 0);
+    border-color: var(--gold);
+    border-width: 1.5px;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.35);
+  }
+}
+
+/* Watermark Gold Logo in Center of Focus Box (Sized to fill 65% of viewport box) */
+.focus-logo-container {
+  position: absolute;
+  width: 65%;
+  height: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  animation: logoFocus 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+@keyframes logoFocus {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-35deg);
+    filter: blur(6px);
+  }
+  15% {
+    opacity: 0.1;
+    transform: scale(0.6) rotate(-25deg);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 0.65;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0px);
+  }
+}
+
+.focus-svg-logo {
+  width: 100%;
+  height: 100%;
+  animation: logoGlow 4s infinite alternate ease-in-out;
+}
+
+/* Premium circular stroke drawing and text focus */
+.focus-svg-logo circle:nth-of-type(1) {
+  stroke-dasharray: 1131;
+  stroke-dashoffset: 1131;
+  animation: drawCircle1 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.focus-svg-logo circle:nth-of-type(2) {
+  stroke-dasharray: 1056;
+  stroke-dashoffset: 1056;
+  animation: drawCircle2 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.focus-svg-logo circle:nth-of-type(3) {
+  stroke-dasharray: 785;
+  stroke-dashoffset: 785;
+  animation: drawCircle3 2.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.focus-svg-logo text {
+  transform-origin: center;
+  will-change: transform, opacity, filter;
+  animation: logoTextFocus 2.0s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+@keyframes drawCircle1 {
+  0% { stroke-dashoffset: 1131; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes drawCircle2 {
+  0% { stroke-dashoffset: 1056; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes drawCircle3 {
+  0% { stroke-dashoffset: 785; }
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes logoTextFocus {
+  0% {
+    opacity: 0;
+    filter: blur(5px);
+    letter-spacing: -6px;
+    transform: scale(0.92);
+  }
+  20% {
+    opacity: 0;
+    filter: blur(5px);
+    letter-spacing: -6px;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    letter-spacing: 2px;
+    transform: scale(1);
+  }
+}
+
+@keyframes logoGlow {
+  0% { filter: drop-shadow(0 0 2px rgba(201, 168, 76, 0.1)); }
+  100% { filter: drop-shadow(0 0 8px rgba(201, 168, 76, 0.35)); }
 }
 
 /* Bokeh / Text Focusing Container */
@@ -113,7 +308,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  z-index: 10;
   text-align: center;
 }
 
@@ -126,8 +320,8 @@
   word-spacing: 16px;
   text-transform: uppercase;
   margin-bottom: 12px;
-  will-change: filter, opacity;
-  transition: filter 1.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.4s ease, text-shadow 1.4s ease, transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: filter, opacity, transform;
+  animation: textFocus 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .brand-focus-subtitle {
@@ -137,51 +331,48 @@
   color: var(--gold);
   letter-spacing: 4px;
   text-transform: uppercase;
-  will-change: filter, opacity;
-  transition: filter 1.4s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.4s ease, transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
-  transition-delay: 0.1s;
+  will-change: filter, opacity, transform;
+  animation: subtitleFocus 2.4s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
-/* Focusing Transitions */
-.brand-focus-logo.out-of-focus,
-.brand-focus-subtitle.out-of-focus {
-  filter: blur(15px);
-  opacity: 0.05;
-  transform: scale(0.97);
+@keyframes textFocus {
+  0% {
+    filter: blur(8px);
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  15% {
+    filter: blur(8px);
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+    transform: scale(1);
+    text-shadow: 0 0 20px rgba(250, 250, 248, 0.15);
+  }
 }
 
-.brand-focus-logo.in-focus {
-  filter: blur(0px);
-  opacity: 1;
-  transform: scale(1);
-  text-shadow: 0 0 20px rgba(250, 250, 248, 0.15);
+@keyframes subtitleFocus {
+  0% {
+    filter: blur(6px);
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  25% {
+    filter: blur(6px);
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 0.8;
+    transform: scale(1);
+  }
 }
 
-.brand-focus-subtitle.in-focus {
-  filter: blur(0px);
-  opacity: 0.8;
-  transform: scale(1);
-}
 
-/* Camera Shutter Instant Light Flash Overlay */
-.shutter-flash-overlay {
-  position: fixed;
-  inset: 0;
-  background: var(--white);
-  z-index: 10005;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.shutter-flash-overlay.flash {
-  animation: cameraShutterClick 0.4s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-}
-
-@keyframes cameraShutterClick {
-  0% { opacity: 0; }
-  15% { opacity: 0.95; } /* Instant blinding screen whiteout */
-  100% { opacity: 0; } /* Smooth decay back to site */
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -193,17 +384,15 @@
   .metric-bottom-left { bottom: 24px; left: 24px; }
   .metric-bottom-right { bottom: 24px; right: 24px; }
   
+  .shutter-center-group {
+    gap: 28px;
+  }
+
   .viewfinder-focus-box {
     width: 55vw;
     height: 55vw;
     max-width: 220px;
     max-height: 220px;
-  }
-  .viewfinder-focus-box.locked {
-    width: 45vw;
-    height: 45vw;
-    max-width: 190px;
-    max-height: 190px;
   }
 
   .brand-focus-logo {
@@ -225,17 +414,15 @@
   .metric-bottom-left { bottom: 16px; left: 16px; }
   .metric-bottom-right { bottom: 16px; right: 16px; }
 
+  .shutter-center-group {
+    gap: 20px;
+  }
+
   .viewfinder-focus-box {
     width: 60vw;
     height: 60vw;
     max-width: 170px;
     max-height: 170px;
-  }
-  .viewfinder-focus-box.locked {
-    width: 50vw;
-    height: 50vw;
-    max-width: 145px;
-    max-height: 145px;
   }
 
   .brand-focus-logo {
