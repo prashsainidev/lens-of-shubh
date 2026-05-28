@@ -11,6 +11,7 @@ import {
   Image as ImageIcon,
   Images,
   Briefcase,
+  CalendarDays,
   LogOut,
   Menu,
   X,
@@ -26,6 +27,7 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Calendar", href: "/dashboard/calendar", icon: CalendarDays },
   { name: "Inquiries", href: "/dashboard/inquiries", icon: MessageSquare },
   { name: "Testimonials", href: "/dashboard/testimonials", icon: Star },
   { name: "Portfolio", href: "/dashboard/portfolio", icon: ImageIcon },
