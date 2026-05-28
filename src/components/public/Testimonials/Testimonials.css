@@ -1,0 +1,991 @@
+/* ================================================================
+   TESTIMONIALS — COMPLETE UNIFIED PREMIUM VERTICAL SCROLLER STYLES
+   Consistent with: Cormorant Garamond / DM Sans / DM Mono stack
+   Design tokens: var(--bg2), var(--gold), var(--cream), var(--muted)
+   ================================================================ */
+
+#testimonials {
+  padding: var(--section-y) 0;
+  background: var(--bg2);
+  overflow: hidden;
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+  position: relative;
+}
+
+/* Background Soft Gold Ambiance Glow */
+#testimonials::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ================================================================
+   ZONE 1 — SECTION HEADER (SIMPLIFIED & CLEAN)
+   ================================================================ */
+
+.testimonials-section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 var(--page-edge) 3.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.testimonials-section-header .section-label {
+  justify-content: center;
+}
+.testimonials-section-header .section-label::before {
+  display: none;
+}
+
+.testimonials-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 540px;
+  line-height: 1.76;
+  margin-top: 1.2rem;
+  font-weight: 300;
+}
+
+/* ================================================================
+   ZONE 2 — UNIFIED WALL OF LOVE INFINITE VERTICAL MARQUEE
+   ================================================================ */
+
+.wol-section {
+  padding: 0 var(--page-edge) 5rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Fading Edge Mask Container */
+.wol-marquee-mask {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 620px; /* Defined height for vertical scroller view window */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Top & Bottom Transparent Fading Gradients for Premium Transition */
+.wol-marquee-mask::before,
+.wol-marquee-mask::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 130px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.wol-marquee-mask::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--bg2) 0%, transparent 100%);
+}
+
+.wol-marquee-mask::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--bg2) 0%, transparent 100%);
+}
+
+.wol-marquee-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  height: 100%;
+}
+
+.wol-marquee-column {
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.wol-marquee-track {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  will-change: transform;
+}
+
+/* Butter-Smooth Pause on Hover (cards remain fully readable & clickable) */
+.wol-marquee-column:hover .wol-marquee-track {
+  animation-play-state: paused !important;
+}
+
+/* Upward Scroll Animation Track (Slower & Premium glide) */
+.wol-scroll-up {
+  animation: verticalScrollUp 68s linear infinite;
+}
+
+/* Downward Scroll Animation Track (Slower & Premium glide) */
+.wol-scroll-down {
+  animation: verticalScrollDown 68s linear infinite;
+}
+
+@keyframes verticalScrollUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+@keyframes verticalScrollDown {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Frosted Glass Cards (Distinct from Services Cards) */
+.wol-card {
+  background: rgba(22, 22, 19, 0.45);
+  backdrop-filter: blur(16px) saturate(160%);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.03),
+    0 10px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding: 30px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+              border-color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
+              box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* Large Decorative Serif Quotes Overlay */
+.wol-card-quote-icon {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-family: var(--font-head);
+  font-size: 80px;
+  line-height: 1;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(201, 168, 76, 0.04);
+  pointer-events: none;
+  transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1),
+              color 0.6s ease;
+  user-select: none;
+}
+
+.wol-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+    0 20px 40px rgba(0, 0, 0, 0.6),
+    0 10px 30px rgba(201, 168, 76, 0.06);
+}
+
+.wol-card:hover .wol-card-quote-icon {
+  color: rgba(201, 168, 76, 0.14);
+  transform: translateY(-4px) rotate(-8deg);
+}
+
+/* Header */
+.wol-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.wol-author-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Double Golden Ring Avatar Frame */
+.wol-avatar-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  border: 2px solid rgba(201, 168, 76, 0.35);
+  background: rgba(201, 168, 76, 0.03);
+  position: relative;
+  padding: 2px;
+  transition: border-color 0.4s ease;
+}
+
+.wol-card:hover .wol-avatar-wrap {
+  border-color: var(--gold);
+}
+
+.wol-avatar-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 50%;
+  transition: transform 0.5s ease;
+}
+
+.wol-card:hover .wol-avatar-img {
+  transform: scale(1.08);
+}
+
+.wol-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Elegant Signature Serif Naming */
+.wol-author-name {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: 0.5px;
+}
+
+.wol-rating {
+  display: flex;
+  gap: 3px;
+}
+
+.wol-star {
+  font-size: 11px;
+  transition: color 0.2s ease;
+}
+
+.wol-star.active {
+  color: var(--gold);
+}
+
+.wol-star.inactive {
+  color: rgba(255, 255, 255, 0.08);
+}
+
+/* Body */
+.wol-card-body {
+  flex-grow: 1;
+  position: relative;
+  z-index: 2;
+  margin-top: 4px;
+}
+
+.wol-text {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.76;
+  color: var(--text-soft);
+  max-width: 100%;
+  font-weight: 300;
+}
+
+/* Errors & Empty States */
+.wol-error-msg,
+.wol-empty-msg {
+  text-align: center;
+  font-size: 14px;
+  color: var(--muted);
+  padding: 4rem 0;
+  border: 1px dashed rgba(201, 168, 76, 0.1);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.005);
+}
+
+/* ── WoL Skeleton Loading ── */
+.wol-skeleton {
+  min-height: 200px;
+  border-radius: 20px;
+  border: 1px dashed rgba(201, 168, 76, 0.08);
+  background: rgba(250, 250, 248, 0.005);
+  position: relative;
+  overflow: hidden;
+}
+
+.wol-skeleton-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(201, 168, 76, 0.005) 25%,
+    rgba(201, 168, 76, 0.03) 50%,
+    rgba(201, 168, 76, 0.005) 75%
+  );
+  background-size: 200% 100%;
+  animation: wolShimmer 1.6s infinite linear;
+}
+
+@keyframes wolShimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ================================================================
+   ZONE 3 — CTA & EMBEDDED DYNAMIC FEEDBACK FORM
+   ================================================================ */
+
+.testimonials-cta-section {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 70px;
+  align-items: center;
+  margin: 0 var(--page-edge);
+  padding: 5.5rem 5rem;
+  background: 
+    radial-gradient(circle at 100% 0%, rgba(201, 168, 76, 0.04) 0%, transparent 60%),
+    rgba(15, 15, 13, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(201, 168, 76, 0.12);
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.cta-info-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 14px;
+}
+
+.cta-info-column .section-label::before {
+  display: none !important;
+}
+
+.cta-heading {
+  font-family: var(--font-head);
+  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.14;
+}
+
+.cta-heading em {
+  font-family: var(--font-head-italic);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+}
+
+.cta-sub {
+  font-size: 14px;
+  color: var(--text-faint);
+  max-width: 460px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* Isolated Form Card Container (High-End Aesthetic) */
+.cta-form-column {
+  width: 100%;
+  background: rgba(20, 20, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.03),
+    0 20px 50px rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  z-index: 3;
+}
+
+.feedback-direct-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+/* Interactive Rating stars container */
+.rating-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 16px;
+}
+
+.rating-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.rating-stars-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 32px;
+}
+
+.rating-stars-input {
+  display: flex;
+  gap: 8px;
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  color: rgba(255, 255, 255, 0.08);
+  cursor: none; /* Inherit global custom cursor */
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 0;
+  line-height: 1;
+}
+
+.star-btn:hover {
+  transform: scale(1.22);
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.4);
+}
+
+.star-btn.active {
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(201, 168, 76, 0.35);
+}
+
+.rating-phrase {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-soft);
+  font-style: italic;
+  font-weight: 300;
+  transition: opacity 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+/* Embedded Form Input Fields styling */
+.feedback-direct-form .form-group {
+  position: relative;
+  width: 100%;
+}
+
+.feedback-direct-form .form-group label {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  font-size: 8.5px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+  background: #181816; /* Match cta-form-column absolute background block */
+  padding: 0 6px;
+  font-family: var(--font-mono);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.feedback-direct-form .form-group input,
+.feedback-direct-form .form-group textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 15px 18px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: border-color var(--transition), background-color var(--transition), box-shadow var(--transition);
+  outline: none;
+  font-weight: 300;
+}
+
+.feedback-direct-form .form-group textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.feedback-direct-form .form-group input:focus,
+.feedback-direct-form .form-group textarea:focus {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.03);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.08);
+}
+
+.feedback-direct-form .form-group input::placeholder,
+.feedback-direct-form .form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.15);
+}
+
+/* Premium Form Submit Button */
+.feedback-direct-form .form-submit {
+  width: 100%;
+  background: var(--gold);
+  color: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 16px 24px;
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  cursor: none;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.feedback-direct-form .form-submit::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--bg);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  z-index: -1;
+  transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.social-link:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+.feedback-direct-form .form-submit:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+  box-shadow: 0 10px 25px rgba(201, 168, 76, 0.25);
+}
+
+.feedback-direct-form .form-submit:hover::before {
+  transform: scaleY(1);
+}
+
+/* Success Card Inside Column */
+.success-feedback-msg {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: rgba(255, 255, 255, 0.005);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: successPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes successPop {
+  0%   { transform: scale(0.9); opacity: 0; }
+  100% { transform: scale(1);   opacity: 1; }
+}
+
+.success-checkmark-circle {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 0 20px rgba(201, 168, 76, 0.15);
+}
+
+.success-title {
+  font-family: var(--font-head);
+  font-size: 22px;
+  color: var(--white);
+  font-weight: 300;
+}
+
+.success-sub {
+  font-size: 13.5px;
+  color: var(--muted);
+  max-width: 320px;
+  margin: 0.5rem auto 1.5rem;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ================================================================
+   RESPONSIVE OVERRIDES
+   ================================================================ */
+
+/* Tablet Layout (Between 769px and 1023px) */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .wol-marquee-mask {
+    height: 520px;
+  }
+  
+  .wol-marquee-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  /* Only scroll 2 columns on tablet for clean width spacing */
+  .wol-marquee-column:nth-child(3) {
+    display: none;
+  }
+
+  .testimonials-cta-section {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    padding: 4.5rem 3.5rem;
+  }
+
+  .cta-info-column {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .cta-sub {
+    max-width: 100%;
+  }
+}
+
+/* Mobile Screens (Under 768px) */
+@media (max-width: 768px) {
+  #testimonials {
+    padding: var(--section-y) 0;
+  }
+
+  .testimonials-section-header {
+    padding-bottom: 2.5rem;
+  }
+
+  .testimonials-subtitle {
+    font-size: 14px;
+  }
+
+  .wol-section {
+    padding-bottom: 4rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .wol-marquee-mask {
+    height: 580px;
+  }
+
+  .wol-marquee-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  /* Only render first column track scrolling upward on mobile */
+  .wol-marquee-column:nth-child(2),
+  .wol-marquee-column:nth-child(3) {
+    display: none;
+  }
+
+  .wol-card {
+    padding: 20px 18px;
+    margin-bottom: 18px;
+    transform: none !important;
+  }
+
+  .wol-card .wol-text {
+    font-size: 13px;
+    line-height: 1.68;
+  }
+
+  .wol-card .wol-card-footer {
+    margin-top: 12px;
+    padding-top: 8px;
+  }
+
+  .wol-card:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+      0 12px 24px rgba(0, 0, 0, 0.5),
+      0 6px 15px rgba(201, 168, 76, 0.04) !important;
+  }
+
+  .wol-card-quote-icon {
+    font-size: 72px;
+    top: 5px;
+    right: 18px;
+  }
+
+  /* CTA Embedded Form collapses to clean single column */
+  .testimonials-cta-section {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 3.5rem 1.5rem;
+    margin: 0 var(--page-edge);
+    border-radius: 16px;
+  }
+
+  .cta-info-column {
+    align-items: center;
+    text-align: center;
+  }
+
+  .cta-info-column .section-label {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cta-sub {
+    max-width: 100%;
+    font-size: 13.5px;
+  }
+
+  .cta-form-column {
+    padding: 24px;
+    border-radius: 16px;
+    background: rgba(20, 20, 18, 0.65);
+  }
+
+  .rating-stars-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .rating-phrase {
+    margin-left: 0;
+    font-size: 12px;
+  }
+
+  .feedback-direct-form .form-group label {
+    background: #191917; /* Matches mobile cta-form-column backdrop exactly */
+  }
+}
+
+/* ================================================================
+   NEW STYLES FOR TESTIMONIAL VISUAL VERIFICATION (LIGHTBOX & FOOTER)
+   ================================================================ */
+
+.wol-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 12px;
+  position: relative;
+  z-index: 2;
+  gap: 12px;
+}
+
+.wol-platform-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+/* Platform Specific Badge Colors */
+.wol-platform-badge.whatsapp {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.wol-platform-badge.instagram {
+  background: rgba(168, 85, 247, 0.1);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.2);
+}
+
+.wol-platform-badge.google-review {
+  background: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.wol-platform-badge.facebook {
+  background: rgba(14, 165, 233, 0.1);
+  color: #0ea5e9;
+  border: 1px solid rgba(14, 165, 233, 0.2);
+}
+
+.wol-platform-badge.other {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* Fallback for other custom strings */
+.wol-platform-badge:not(.whatsapp):not(.instagram):not(.google-review):not(.facebook):not(.other) {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-soft);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wol-proof-btn {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 1px solid rgba(201, 168, 76, 0.35);
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.wol-proof-btn:hover {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: var(--gold);
+  transform: translateY(-1px);
+}
+
+.wol-proof-btn:active {
+  transform: translateY(0);
+}
+
+/* Lightbox Modal Styles */
+.wol-lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 5, 5, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: wolFadeIn 0.3s ease forwards;
+}
+
+.wol-lightbox-content {
+  background: #111110;
+  border: 1px solid rgba(201, 168, 76, 0.16);
+  border-radius: 20px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(201, 168, 76, 0.05);
+  animation: wolZoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.wol-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-soft);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.wol-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cream);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.wol-lightbox-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 12px;
+}
+
+.wol-lightbox-title {
+  font-family: var(--font-head);
+  font-size: 18px;
+  color: var(--cream);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.wol-lightbox-subtitle {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.wol-lightbox-body {
+  background: #070706;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 12px;
+  overflow-y: auto;
+  max-height: 65vh;
+  width: 100%;
+}
+
+.wol-lightbox-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes wolFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes wolZoomIn {
+  from { transform: scale(0.96); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Lightbox responsiveness */
+@media (max-width: 480px) {
+  .wol-lightbox-overlay {
+    padding: 16px;
+  }
+  .wol-lightbox-content {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .wol-lightbox-title {
+    font-size: 16px;
+  }
+}
