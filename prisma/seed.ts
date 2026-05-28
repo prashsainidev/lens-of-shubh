@@ -427,6 +427,207 @@ async function main() {
     console.log("Social testimonials already exist. Skipping social seed.");
   }
 
+  // 5. Seed Wedding Projects and Bookings/Events
+  console.log("Cleaning old bookings and wedding projects...");
+  await prisma.booking.deleteMany({});
+  await prisma.weddingProject.deleteMany({});
+
+  console.log("Seeding Wedding Projects & Bookings...");
+
+  // Project 1: Priya & Rahul (Hindu Wedding)
+  await prisma.weddingProject.create({
+    data: {
+      clientName: "Priya & Rahul",
+      phone: "+91 98765 43210",
+      email: "priya.rahul@example.com",
+      religion: "Hindu",
+      status: "confirmed",
+      totalAmount: "180000",
+      advancePaid: "60000",
+      notes: "Drone coverage required for Baraat and Pheras. 3 photographers + 2 cinematographers.",
+      bookings: {
+        create: [
+          {
+            eventType: "Roka",
+            eventDate: new Date("2026-05-20T17:00:00.000Z"),
+            venue: "Grand Ballroom, Hyatt Regency, Delhi",
+            notes: "Evening setup, warm lights.",
+            status: "completed"
+          },
+          {
+            eventType: "Haldi",
+            eventDate: new Date("2026-05-28T09:00:00.000Z"),
+            venue: "Heritage Lawn, Priya's Residence, Delhi",
+            notes: "Yellow dress code, outdoor natural light.",
+            status: "confirmed"
+          },
+          {
+            eventType: "Mehendi",
+            eventDate: new Date("2026-05-28T15:00:00.000Z"),
+            venue: "Priya's Residence, Delhi",
+            notes: "Candid close-ups of henna detail.",
+            status: "confirmed"
+          },
+          {
+            eventType: "Baraat",
+            eventDate: new Date("2026-05-29T16:00:00.000Z"),
+            venue: "The Leela Palace, New Delhi",
+            notes: "Groom entry on vintage car.",
+            status: "confirmed"
+          },
+          {
+            eventType: "Pheras",
+            eventDate: new Date("2026-05-29T21:00:00.000Z"),
+            venue: "The Leela Palace, New Delhi",
+            notes: "Mandap details, emotional moments.",
+            status: "confirmed"
+          },
+          {
+            eventType: "Reception",
+            eventDate: new Date("2026-05-30T19:00:00.000Z"),
+            venue: "Aura Hall, The Leela Palace, New Delhi",
+            notes: "Stage setups, couple portraits.",
+            status: "confirmed"
+          }
+        ]
+      }
+    }
+  });
+
+  // Project 2: Zara & Imran (Muslim Wedding)
+  await prisma.weddingProject.create({
+    data: {
+      clientName: "Zara & Imran",
+      phone: "+91 88888 77777",
+      email: "zara.imran@example.com",
+      religion: "Muslim",
+      status: "confirmed",
+      totalAmount: "150000",
+      advancePaid: "50000",
+      notes: "Traditional Nikah coverage. Focus on candid moments.",
+      bookings: {
+        create: [
+          {
+            eventType: "Mehendi",
+            eventDate: new Date("2026-06-04T16:00:00.000Z"),
+            venue: "Zara's Villa, Gurugram",
+            notes: "Family gathering.",
+            status: "confirmed"
+          },
+          {
+            eventType: "Nikah",
+            eventDate: new Date("2026-06-05T11:00:00.000Z"),
+            venue: "The Oberoi, Gurugram",
+            notes: "Traditional signature capturing.",
+            status: "confirmed"
+          },
+          {
+            eventType: "Walima",
+            eventDate: new Date("2026-06-06T19:00:00.000Z"),
+            venue: "Grand Ballroom, The Oberoi, Gurugram",
+            notes: "Modern couple portrait shoot.",
+            status: "confirmed"
+          }
+        ]
+      }
+    }
+  });
+
+  // Project 3: Elena & David (Destination Wedding)
+  await prisma.weddingProject.create({
+    data: {
+      clientName: "Elena & David",
+      phone: "+1 555-0199",
+      email: "elena.david@example.com",
+      religion: "Destination",
+      status: "pending",
+      totalAmount: "350000",
+      advancePaid: "100000",
+      notes: "Destination shoot. Deliver high-res highlight reel.",
+      bookings: {
+        create: [
+          {
+            eventType: "Welcome Dinner",
+            eventDate: new Date("2026-06-15T19:00:00.000Z"),
+            venue: "Umaid Bhawan Palace, Jodhpur",
+            notes: "Rajasthani theme setup.",
+            status: "pending"
+          },
+          {
+            eventType: "Pre-Wedding Shoot",
+            eventDate: new Date("2026-06-16T06:00:00.000Z"),
+            venue: "Mehrangarh Fort, Jodhpur",
+            notes: "Early morning fort views.",
+            status: "pending"
+          },
+          {
+            eventType: "Wedding Ceremony",
+            eventDate: new Date("2026-06-17T17:00:00.000Z"),
+            venue: "Baradari Lawn, Umaid Bhawan Palace",
+            notes: "Sunset wedding.",
+            status: "pending"
+          },
+          {
+            eventType: "Reception",
+            eventDate: new Date("2026-06-18T19:00:00.000Z"),
+            venue: "Museum Courtyard, Umaid Bhawan Palace",
+            notes: "Sparkler exit at the end.",
+            status: "pending"
+          }
+        ]
+      }
+    }
+  });
+
+  // Standalone bookings
+  await prisma.booking.createMany({
+    data: [
+      {
+        clientName: "Dr. Aditya Sharma",
+        phone: "+91 99999 11111",
+        email: "aditya.sharma@example.com",
+        eventType: "Portrait",
+        eventDate: new Date("2026-05-18T15:00:00.000Z"),
+        venue: "Lodhi Garden, Delhi",
+        notes: "Individual personal branding session. 2 changes.",
+        status: "completed",
+        totalAmount: "15000",
+        advancePaid: "5000"
+      },
+      {
+        clientName: "TechCorp Annual Summit",
+        phone: "+91 12345 67890",
+        email: "media@techcorp.com",
+        eventType: "Corporate",
+        eventDate: new Date("2026-06-12T09:00:00.000Z"),
+        venue: "Aerocity Convention Centre, Delhi",
+        notes: "Keynote coverage and group headshots.",
+        status: "confirmed",
+        totalAmount: "50000",
+        advancePaid: "20000"
+      },
+      // Blocked Dates
+      {
+        clientName: "Blocked",
+        eventType: "Blocked",
+        eventDate: new Date("2026-05-24T00:00:00.000Z"),
+        isBlocked: true,
+        blockReason: "Maintenance / Lens calibration check",
+        status: "confirmed"
+      },
+      {
+        clientName: "Blocked",
+        eventType: "Blocked",
+        eventDate: new Date("2026-06-10T00:00:00.000Z"),
+        isBlocked: true,
+        blockReason: "Personal Time - Family Vacation",
+        status: "confirmed"
+      }
+    ]
+  });
+
+  console.log("Successfully seeded Wedding Projects, Bookings, and Blocked dates.");
+
   console.log("Database seeding verification completed successfully!");
 }
 
