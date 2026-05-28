@@ -605,7 +605,7 @@ export default function CalendarPage() {
         </div>
         <button
           onClick={() => openAddForm()}
-          className="flex items-center gap-2 bg-[#C9A84C] hover:bg-[#D4B45A] text-black text-sm font-semibold px-4 py-2.5 rounded-xl transition-all cursor-pointer shadow-lg shadow-amber-500/10"
+          className="flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#D4B45A] text-black text-sm font-semibold px-4 py-2.5 rounded-xl transition-all cursor-pointer shadow-lg shadow-amber-500/10 w-full sm:w-auto"
         >
           <Plus className="w-4 h-4" />
           Add Booking
@@ -624,36 +624,36 @@ export default function CalendarPage() {
       )}
 
       {/* ── Visual Legend ─────────────────────────────────────────────────── */}
-      <div className="bg-[#0D0D0C]/40 border border-white/5 rounded-xl p-4 flex flex-col gap-3">
+      <div className="bg-[#0D0D0C]/40 border border-white/5 rounded-xl p-3 sm:p-4 flex flex-col gap-2.5">
         <span className="text-[10px] font-mono uppercase tracking-wider text-gray-500">Event Categories &amp; Color Coding</span>
-        <div className="flex flex-wrap gap-x-6 gap-y-2">
+        <div className="flex flex-wrap gap-x-4 sm:gap-x-6 gap-y-2">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
-            <span className="text-[11px] font-mono text-gray-400">Main Ceremonies (Pheras, Nikah, Jaimala)</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-gray-400">Main Ceremonies (Pheras, Nikah, Jaimala)</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-pink-400" />
-            <span className="text-[11px] font-mono text-gray-400">Pre-Wedding Functions (Haldi, Mehendi, Sangeet)</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-gray-400">Pre-Wedding (Haldi, Mehendi, Sangeet)</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-teal-400" />
-            <span className="text-[11px] font-mono text-gray-400">Pre-Wedding Shoots</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-gray-400">Pre-Wedding Shoots</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-purple-400" />
-            <span className="text-[11px] font-mono text-gray-400">Post-Wedding (Reception, Vidaai, Walima)</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-gray-400">Post-Wedding (Reception, Vidaai)</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-indigo-400" />
-            <span className="text-[11px] font-mono text-gray-400">Portraits</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-gray-400">Portraits</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-blue-400" />
-            <span className="text-[11px] font-mono text-gray-400">Corporate / Personal</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-gray-400">Corporate / Personal</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-red-500" />
-            <span className="text-[11px] font-mono text-gray-400">Blocked / Unavailable</span>
+            <span className="text-[10px] sm:text-[11px] font-mono text-gray-400">Blocked / Unavailable</span>
           </div>
         </div>
       </div>
@@ -662,17 +662,17 @@ export default function CalendarPage() {
       <div className="bg-[#0F0F0E] border border-amber-500/8 rounded-2xl overflow-hidden">
 
         {/* Month Navigation */}
-        <div className="flex items-center justify-between px-5 py-4 border-b border-amber-500/8">
+        <div className="flex items-center justify-between px-3 sm:px-5 py-4 border-b border-amber-500/8">
           <button onClick={prevMonth} className="w-9 h-9 flex items-center justify-center rounded-lg hover:bg-[#1A1A19] text-gray-400 hover:text-white transition-all cursor-pointer">
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <div className="flex items-center gap-3">
-            <span className="text-base font-serif font-semibold text-white tracking-wide">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <span className="text-sm sm:text-base font-serif font-semibold text-white tracking-wide">
               {MONTHS[currentMonth]} {currentYear}
             </span>
             <button
               onClick={goToday}
-              className="text-[10px] font-mono uppercase tracking-wider text-[#C9A84C] border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 rounded-md px-2.5 py-1 transition-all cursor-pointer"
+              className="text-[9px] sm:text-[10px] font-mono uppercase tracking-wider text-[#C9A84C] border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 rounded-md px-2 py-0.5 sm:px-2.5 sm:py-1 transition-all cursor-pointer"
             >
               Today
             </button>
@@ -714,7 +714,7 @@ export default function CalendarPage() {
                   }
                 }}
                 className={`
-                  relative min-h-[90px] md:min-h-[110px] p-1.5 md:p-2 border-b border-r border-amber-500/5
+                  relative min-h-[85px] sm:min-h-[100px] md:min-h-[115px] p-1 sm:p-1.5 md:p-2 border-b border-r border-amber-500/5
                   transition-all cursor-pointer
                   ${!cell.currentMonth ? "opacity-35 cursor-default" : "hover:bg-[#161615]"}
                   ${isSelected ? "bg-[#C9A84C]/5 border-amber-500/20" : ""}
@@ -723,7 +723,7 @@ export default function CalendarPage() {
               >
                 {/* Date number */}
                 <div className={`
-                  inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-medium mb-1.5 transition-all
+                  inline-flex items-center justify-center w-5 h-5 sm:w-6 sm:h-6 rounded-full text-[10px] sm:text-xs font-medium mb-1 sm:mb-1.5 transition-all
                   ${todayCell ? "bg-[#C9A84C] text-black font-bold" : cell.currentMonth ? "text-gray-300 hover:text-white" : "text-gray-600"}
                 `}>
                   {cell.day}
@@ -751,7 +751,7 @@ export default function CalendarPage() {
                           setSelectedBooking(b);
                           setSelectedDay({ year: currentYear, month: currentMonth, day: cell.day });
                         }}
-                        className={`flex items-center gap-1 px-1.5 py-0.5 rounded text-[10px] font-medium truncate border ${c.bg} ${c.text} ${c.border} hover:opacity-80 transition-opacity cursor-pointer`}
+                        className={`flex items-center gap-1 px-1 sm:px-1.5 py-0.5 rounded text-[9px] sm:text-[10px] font-medium truncate border ${c.bg} ${c.text} ${c.border} hover:opacity-80 transition-opacity cursor-pointer`}
                         title={label}
                       >
                         <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${c.dot}`} />
@@ -772,8 +772,8 @@ export default function CalendarPage() {
 
       {/* ── Day Detail Panel ──────────────────────────────────────────────── */}
       {selectedDay && (
-        <div className="bg-[#0F0F0E] border border-amber-500/8 rounded-2xl p-5 animate-in fade-in slide-in-from-bottom-2 duration-200">
-          <div className="flex items-center justify-between mb-5">
+        <div className="bg-[#0F0F0E] border border-amber-500/8 rounded-2xl p-4 sm:p-5 animate-in fade-in slide-in-from-bottom-2 duration-200">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
             <div>
               <h3 className="text-base font-serif font-semibold text-white">
                 {new Date(selectedDay.year, selectedDay.month, selectedDay.day).toLocaleDateString("en-IN", { weekday: "long", day: "numeric", month: "long", year: "numeric" })}
@@ -784,14 +784,14 @@ export default function CalendarPage() {
                   : `${getBookingsForDate(bookings, selectedDay.year, selectedDay.month, selectedDay.day).length} event(s) scheduled`}
               </p>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full sm:w-auto">
               <button
                 onClick={() => openAddForm(`${selectedDay.year}-${String(selectedDay.month + 1).padStart(2, "0")}-${String(selectedDay.day).padStart(2, "0")}`)}
-                className="flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#C9A84C] border border-[#C9A84C]/20 hover:bg-[#C9A84C]/5 rounded-lg px-3 py-1.5 transition-all cursor-pointer"
+                className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 text-xs font-mono uppercase tracking-wider text-[#C9A84C] border border-[#C9A84C]/20 hover:bg-[#C9A84C]/5 rounded-lg px-3 py-2 sm:py-1.5 transition-all cursor-pointer"
               >
                 <Plus className="w-3.5 h-3.5" /> Add Booking
               </button>
-              <button onClick={() => { setSelectedDay(null); setSelectedBooking(null); }} className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[#1A1A19] text-gray-400 hover:text-white transition-all cursor-pointer">
+              <button onClick={() => { setSelectedDay(null); setSelectedBooking(null); }} className="w-9 h-9 sm:w-8 sm:h-8 flex items-center justify-center rounded-lg hover:bg-[#1A1A19] text-gray-400 hover:text-white transition-all cursor-pointer border border-white/5 sm:border-transparent">
                 <X className="w-4 h-4" />
               </button>
             </div>
@@ -1283,14 +1283,14 @@ export default function CalendarPage() {
             </div>
 
             {/* Form Footer */}
-            <div className="px-6 py-4 border-t border-amber-500/8 flex items-center justify-end gap-3 bg-[#111110] sticky bottom-0 z-20">
-              <button onClick={closeForm} className="text-sm font-mono text-gray-400 hover:text-white border border-[#2A2A28] hover:border-gray-600 rounded-xl px-4 py-2 transition-all cursor-pointer">
+            <div className="px-4 sm:px-6 py-4 border-t border-amber-500/8 flex flex-col-reverse sm:flex-row items-stretch sm:items-center justify-end gap-2.5 sm:gap-3 bg-[#111110] sticky bottom-0 z-20">
+              <button onClick={closeForm} className="text-center text-sm font-mono text-gray-400 hover:text-white border border-[#2A2A28] hover:border-gray-600 rounded-xl px-4 py-2.5 sm:py-2 transition-all cursor-pointer w-full sm:w-auto">
                 Cancel
               </button>
               <button
                 onClick={handleSave}
                 disabled={isSaving}
-                className="flex items-center gap-2 bg-[#C9A84C] hover:bg-[#D4B45A] disabled:opacity-60 text-black text-sm font-semibold px-5 py-2 rounded-xl transition-all cursor-pointer shadow-md shadow-amber-500/5"
+                className="flex items-center justify-center gap-2 bg-[#C9A84C] hover:bg-[#D4B45A] disabled:opacity-60 text-black text-sm font-semibold px-5 py-2.5 sm:py-2 rounded-xl transition-all cursor-pointer shadow-md shadow-amber-500/5 w-full sm:w-auto"
               >
                 {isSaving ? <RefreshCw className="w-4 h-4 animate-spin" /> : null}
                 {editingProject ? "Save Project" : editingBooking ? "Save Changes" : "Create Booking"}
