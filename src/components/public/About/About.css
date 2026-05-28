@@ -1,0 +1,214 @@
+/* ================================================================
+   ABOUT COMPONENT STYLES
+================================================================ */
+
+#about {
+  padding: 120px 60px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  background: var(--bg2);
+  position: relative;
+  overflow: hidden;
+  padding: var(--section-y) var(--page-edge);
+}
+
+#about::before {
+  content: 'ABOUT';
+  position: absolute; left: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-head);
+  font-size: 200px; font-weight: 700;
+  color: rgba(201,168,76,0.03);
+  white-space: nowrap; pointer-events: none;
+}
+
+.about-heading {
+  margin-bottom: 28px;
+  font-synthesis: none;
+  letter-spacing: 0;
+}
+
+.about-heading em {
+  font-style: italic; color: var(--gold);
+  font-family: var(--font-head-italic);
+  font-weight: 300;
+}
+
+.about-text p {
+  color: var(--muted); line-height: 1.9;
+  margin-bottom: 20px; font-size: 15px;
+  color: var(--text-faint);
+  font-size: 0.98rem;
+  line-height: 1.8;
+}
+
+.about-image-wrap {
+  position: relative;
+}
+
+.about-image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 2px;
+  background: var(--bg);
+  border-radius: 8px;
+}
+
+.about-image-container img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.08);
+  border-radius: 2px;
+  transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.about-image-container img.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.about-image-wrap::before {
+  content: '';
+  position: absolute; top: -20px; left: -20px; right: 20px; bottom: 20px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px; z-index: -1;
+}
+
+.about-image-wrap::after {
+  content: '';
+  position: absolute; bottom: -12px; right: -12px;
+  width: 120px; height: 120px;
+  background: var(--gold-glow);
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px; z-index: -1;
+}
+
+.about-skills {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  margin-top: 32px;
+}
+
+.skill-tag {
+  padding: 6px 16px;
+  border: 1px solid var(--gold-dim);
+  border-radius: 2px;
+  font-size: 11px; letter-spacing: 1.5px;
+  color: var(--gold); text-transform: uppercase;
+  font-family: var(--font-mono);
+}
+
+/* ================================================================
+   RESPONSIVE OVERRIDES
+   ================================================================ */
+
+@media (max-width: 1024px) {
+  #about::before {
+    font-size: clamp(100px, 15vw, 160px);
+    left: -10px;
+  }
+}
+
+/* Tablet Layout (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #about {
+    grid-template-columns: 4fr 6fr;
+    gap: 40px;
+    padding: var(--section-y) var(--page-edge);
+  }
+  .about-image-wrap {
+    order: 1;
+  }
+  .about-text {
+    order: 2;
+  }
+}
+
+/* Mobile Layout (< 768px) */
+@media (max-width: 767px) {
+  #about { 
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 5rem 1.35rem;
+  }
+  
+  #about::before {
+    font-size: clamp(70px, 18vw, 100px);
+    left: -5px;
+    top: 80px;
+    transform: none;
+  }
+
+  .about-image-container {
+    aspect-ratio: 3/4;
+    height: auto;
+  }
+
+  .skill-tag {
+    font-size: 9px;
+    padding: 4px 10px;
+    letter-spacing: 1.0px;
+  }
+
+  .about-image-wrap::before {
+    top: -10px; left: -10px; right: 10px; bottom: 10px;
+  }
+
+  .about-image-wrap::after {
+    display: none;
+  }
+}
+
+/* ================================================================
+   ABOUT LOADING & PLACEHOLDER STYLES
+   ================================================================ */
+.about-shimmer {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(250, 250, 248, 0.015) 25%,
+    rgba(201, 168, 76, 0.05) 50%,
+    rgba(250, 250, 248, 0.015) 75%
+  );
+  background-size: 200% 100%;
+  animation: aboutShimmerWave 1.6s infinite linear;
+}
+
+@keyframes aboutShimmerWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.about-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-camera-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--gold);
+  animation: cameraIconPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes cameraIconPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
